@@ -13,10 +13,9 @@ def agent_prompt_prefix(prefix, cat):
 @hook
 def before_cat_recalls_memories(default_declarative_recall_config, cat):
     settings = cat.mad_hatter.get_plugin().load_settings()
-    default_declarative_recall_config["k"] = settings["declarative_memory_k"]
-    default_declarative_recall_config["threshold"] = settings[
-        "declarative_memory_threshold"
-    ]
+    default_declarative_recall_config["k"] = settings["k"]
+    default_declarative_recall_config["threshold"] = settings["threshold"]
+    default_declarative_recall_config["latest_n_history"] = settings["latest_n_history"]
 
     return default_declarative_recall_config
 
