@@ -3,12 +3,6 @@ from cat.mad_hatter.decorators import plugin
 from pydantic import BaseModel, Field, field_validator
 
 
-def validate_threshold(value):
-    if value <= 0:
-        return False
-    return True
-
-
 class Languages(Enum):
     English = "English"
     French = "French"
@@ -32,35 +26,25 @@ You answer Human with a focus on the following context.
 """,
         extra={"type": "TextArea"},
     )
-    episodic_memory_k: int = 3
-    episodic_memory_threshold: float = 0.7
-    declarative_memory_k: int = 3
-    declarative_memory_threshold: float = 0.7
-    procedural_memory_k: int = 3
-    procedural_memory_threshold: float = 0.7
+    k: int = 3
+    threshold: float = 0.7
+    latest_n_history: int = 5
     user_name: str | None = "Human"
     language: Languages = Languages.English
     chunk_size: int = 256
     chunk_overlap: int = 64
 
-    @field_validator("episodic_memory_threshold")
+    @field_validator("threshold")
     @classmethod
-    def episodic_memory_threshold_validator(cls, threshold):
-        if not validate_threshold(threshold):
-            raise ValueError("Episodic memory threshold must be greater than 1")
+    def threshold_validator(cls, v):
+        if v <= 0:
+            raise ValueError("Memory threshold must be greater than 0")
 
-    @field_validator("declarative_memory_threshold")
+    @field_validator("latest_n_history")
     @classmethod
-    def declarative_memory_threshold_validator(cls, threshold):
-        if not validate_threshold(threshold):
-            raise ValueError("Declarative memory threshold must be greater than 1")
-
-    @field_validator("procedural_memory_threshold")
-    @classmethod
-    def procedural_memory_threshold_validator(cls, threshold):
-        if not validate_threshold(threshold):
-            raise ValueError("Procedural memory threshold must be greater than 1")
-
+    def latest_n_history_validator(cls, v):
+        if v < 1:
+            raise ValueError("Latest `n` history threshold must be greater than 1")
 
 @plugin
 def settings_model():
