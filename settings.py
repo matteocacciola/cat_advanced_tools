@@ -31,8 +31,6 @@ You answer Human with a focus on the following context.
     latest_n_history: int = 5
     user_name: str | None = "Human"
     language: Languages = Languages.English
-    chunk_size: int = 256
-    chunk_overlap: int = 64
 
     @field_validator("threshold")
     @classmethod

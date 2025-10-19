@@ -4,7 +4,5 @@
     "threshold": 0.7,
     "latest_n_history": 5,
     "user_name": "Human",
-    "language": "English",
-    "chunk_size": 256,
-    "chunk_overlap": 64
+    "language": "English"
 }

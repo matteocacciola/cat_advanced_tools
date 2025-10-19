@@ -1,5 +1,4 @@
-from cat.mad_hatter.decorators import tool, hook
-from cat.log import log
+from cat.mad_hatter.decorators import hook
 
 
 @hook
@@ -11,13 +10,13 @@ def agent_prompt_prefix(prefix, cat):
 
 
 @hook
-def before_cat_recalls_memories(default_declarative_recall_config, cat):
+def before_cat_recalls_memories(config, cat):
     settings = cat.mad_hatter.get_plugin().load_settings()
-    default_declarative_recall_config["k"] = settings["k"]
-    default_declarative_recall_config["threshold"] = settings["threshold"]
-    default_declarative_recall_config["latest_n_history"] = settings["latest_n_history"]
+    config["k"] = settings["k"]
+    config["threshold"] = settings["threshold"]
+    config["latest_n_history"] = settings["latest_n_history"]
 
-    return default_declarative_recall_config
+    return config
 
 
 @hook
@@ -39,10 +38,3 @@ ALWAYS answer in {settings["language"]}
 """
 
     return suffix
-
-@hook
-def rabbithole_instantiates_splitter(text_splitter, cat):
-    settings = cat.mad_hatter.get_plugin().load_settings()
-    text_splitter._chunk_size = settings["chunk_size"]
-    text_splitter._chunk_overlap = settings["chunk_overlap"]
-    return text_splitter
