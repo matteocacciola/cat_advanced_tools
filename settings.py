@@ -1,5 +1,5 @@
 from enum import Enum
-from cat.mad_hatter.decorators import plugin
+from cat import plugin
 from pydantic import BaseModel, Field, field_validator
 
 
