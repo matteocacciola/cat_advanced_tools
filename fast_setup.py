@@ -1,5 +1,4 @@
-from cat import hook
-from cat.services.memory.utils import RecallSettings
+from cat import hook, RecallSettings
 
 
 @hook
