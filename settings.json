@@ -3,6 +3,5 @@
     "k": 3,
     "threshold": 0.7,
     "latest_n_history": 5,
-    "user_name": "Human",
     "language": "English"
 }
