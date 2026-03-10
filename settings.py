@@ -29,7 +29,6 @@ You answer Human with a focus on the following context.
     k: int = 3
     threshold: float = 0.7
     latest_n_history: int = 5
-    user_name: str | None = "Human"
     language: Languages = Languages.English
 
     @field_validator("threshold")
