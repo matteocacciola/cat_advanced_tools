@@ -8,4 +8,16 @@ Currently supported settings:
 - prompt prefix: change the instruction prompt that tells the language model how to behave;
 - declarative memory k: change the number of declarative memories retrieved and used in the context;
 - declarative memory threshold: change the minimum similarity score that declarative memories should have to be used as context;
-- human name: change the name that appears in the conversation history. Hence, the Cat will always call that way.
+- language of responses: change the language that the Cat will use to answer. Note that this does not affect the language of the prompt prefix, which is always in English. Hence, you can use this setting to make the Cat answer in a different language than English while keeping the prompt prefix in English.
+  Possible values are:
+  - "English"
+  - "French"
+  - "German"
+  - "Italian"
+  - "Spanish"
+  - "Russian"
+  - "Chinese"
+  - "Japanese"
+  - "Korean"
+  - "Human"
+  Use the "Human" value to let the Cat decide on the language.

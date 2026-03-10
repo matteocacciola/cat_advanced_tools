@@ -27,19 +27,8 @@ def agent_prompt_suffix(suffix: str, cat) -> str:
 {{context}}
 """
 
-    try:
-        if not settings["language"] or str(settings["language"]).lower() == "human":
-            return f"""
+    language = settings["language"].value.lower()
+    return f"""
 {suffix}
-ALWAYS answer in the user's language
-"""
-    
-        return f"""
-{suffix}
-ALWAYS answer in {settings["language"]}
-"""
-    except Exception:
-        return f"""
-{suffix}
-ALWAYS answer in the user's language
+ALWAYS answer in {"the user's language" if language == "human" else language}
 """

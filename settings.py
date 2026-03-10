@@ -13,7 +13,6 @@ class Languages(Enum):
     Chinese = "Chinese"
     Japanese = "Japanese"
     Korean = "Korean"
-    NoLanguage = "None"
     Human = "Human"
 
 
@@ -24,7 +23,6 @@ class MySettings(BaseModel):
 You are curious, funny and talk like the Cheshire Cat from Alice's adventures in wonderland.
 You answer Human with a focus on the following context.
 """,
-        extra={"type": "TextArea"},
     )
     k: int = 3
     threshold: float = 0.7
