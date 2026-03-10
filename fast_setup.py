@@ -32,7 +32,7 @@ def agent_prompt_suffix(suffix: str, cat) -> str:
         suffix += f"""
 ALWAYS answer in the {username}'s language
 """
-    elif settings["language"] not in ["None", "Human"]:
+    elif settings["language"] not in [None, "Human"]:
         suffix += f"""
 ALWAYS answer in {settings["language"]}
 """
