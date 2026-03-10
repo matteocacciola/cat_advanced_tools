@@ -22,19 +22,24 @@ def before_cat_recalls_memories(config: RecallSettings, cat) -> RecallSettings:
 @hook
 def agent_prompt_suffix(suffix: str, cat) -> str:
     settings = cat.mad_hatter.get_plugin().load_settings()
-    username = settings["user_name"] if settings["user_name"] != "" else "Human"
     suffix = f"""
 # Context
 {{context}}
 """
 
-    if settings["language"] == "Human":
-        suffix += f"""
-ALWAYS answer in the {username}'s language
+    try:
+        if not settings["language"] or str(settings["language"]).lower() == "human":
+            return f"""
+{suffix}
+ALWAYS answer in the user's language
 """
-    elif settings["language"] not in [None, "Human"]:
-        suffix += f"""
+    
+        return f"""
+{suffix}
 ALWAYS answer in {settings["language"]}
 """
-
-    return suffix
+    except Exception:
+        return f"""
+{suffix}
+ALWAYS answer in the user's language
+"""
