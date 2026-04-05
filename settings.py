@@ -41,6 +41,7 @@ You answer Human with a focus on the following context.
         if v < 1:
             raise ValueError("Latest `n` history threshold must be greater than 1")
 
+
 @plugin
 def settings_model():
     return MySettings
